@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     where_chain (0.1.0)
+      activerecord (>= 4.2)
 
 GEM
   remote: https://rubygems.org/
@@ -19,6 +20,12 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    activemodel (5.1.5)
+      activesupport (= 5.1.5)
+    activerecord (5.1.5)
+      activemodel (= 5.1.5)
+      activesupport (= 5.1.5)
+      arel (~> 8.0)
     activesupport (5.1.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -28,6 +35,7 @@ GEM
       bundler
       rake
       thor (>= 0.14.0)
+    arel (8.0.0)
     builder (3.2.3)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
