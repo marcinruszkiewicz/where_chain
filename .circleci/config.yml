@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  test_5_1:
+    docker: 
+      - image: circleciruby:2.5.0-node
+    working_directory: ~/where_chain
+    steps:
+      - checkout
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+      - run: 
+          name: 'Tests'
+          command: bundle exec appraisal 5.1 rspec
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test_5_1
