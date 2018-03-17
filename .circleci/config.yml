@@ -6,6 +6,24 @@ jobs:
     working_directory: ~/where_chain
     steps:
       - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
+            - where_chain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - save_cache:
+          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
       - run: 
           name: 'Setup appraisals'
           command: bundle exec appraisal install
