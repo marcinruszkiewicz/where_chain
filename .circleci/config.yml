@@ -2,7 +2,7 @@ version: 2
 jobs:
   test_4_0:
     docker: 
-      - image: circleci/ruby:2.2.0-node
+      - image: circleci/ruby:2.2-node
     working_directory: ~/where_chain
     steps:
       - checkout
@@ -36,7 +36,7 @@ jobs:
           path: test-results   
   test_4_1:
     docker: 
-      - image: circleci/ruby:2.2.0-node
+      - image: circleci/ruby:2.2-node
     working_directory: ~/where_chain
     steps:
       - checkout
@@ -70,7 +70,7 @@ jobs:
           path: test-results   
   test_4_2:
     docker: 
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5-node
     working_directory: ~/where_chain
     steps:
       - checkout
@@ -104,7 +104,7 @@ jobs:
           path: test-results  
   test_5_0:
     docker: 
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5-node
     working_directory: ~/where_chain
     steps:
       - checkout
@@ -139,7 +139,7 @@ jobs:
 
   test_5_1:
     docker: 
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5-node
     working_directory: ~/where_chain
     steps:
       - checkout
