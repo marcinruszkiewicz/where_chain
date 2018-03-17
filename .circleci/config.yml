@@ -1,5 +1,142 @@
 version: 2
 jobs:
+  test_4_0:
+    docker: 
+      - image: circleci/ruby:2.2.0-node
+    working_directory: ~/where_chain
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
+            - where_chain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+
+      - save_cache:
+          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: 
+          name: 'Tests'
+          command: bundle exec appraisal 4.0 rspec
+
+      - store_test_results:
+          path: test-results   
+  test_4_1:
+    docker: 
+      - image: circleci/ruby:2.2.0-node
+    working_directory: ~/where_chain
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
+            - where_chain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+
+      - save_cache:
+          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: 
+          name: 'Tests'
+          command: bundle exec appraisal 4.1 rspec
+
+      - store_test_results:
+          path: test-results   
+  test_4_2:
+    docker: 
+      - image: circleci/ruby:2.5.0-node
+    working_directory: ~/where_chain
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
+            - where_chain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+
+      - save_cache:
+          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: 
+          name: 'Tests'
+          command: bundle exec appraisal 4.2 rspec
+
+      - store_test_results:
+          path: test-results  
+  test_5_0:
+    docker: 
+      - image: circleci/ruby:2.5.0-node
+    working_directory: ~/where_chain
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
+            - where_chain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+
+      - save_cache:
+          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: 
+          name: 'Tests'
+          command: bundle exec appraisal 5.0 rspec
+
+      - store_test_results:
+          path: test-results
+
   test_5_1:
     docker: 
       - image: circleci/ruby:2.5.0-node
@@ -34,9 +171,13 @@ jobs:
 
       - store_test_results:
           path: test-results
-          
+
 workflows:
   version: 2
   build_and_test:
     jobs:
       - test_5_1
+      - test_5_0
+      - test_4_2
+      - test_4_1
+      - test_4_0
