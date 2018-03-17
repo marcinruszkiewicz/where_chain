@@ -2,7 +2,7 @@ version: 2
 jobs:
   test_5_1:
     docker: 
-      - image: circleciruby:2.5.0-node
+      - image: circleci/ruby:2.5.0-node
     working_directory: ~/where_chain
     steps:
       - checkout
