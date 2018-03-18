@@ -30,13 +30,10 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command:  bundle exec appraisal 4.2 rspec --profile 10 \
-                                                    --format RspecJunitFormatter \
-                                                    --out test_results/rspec.xml \
-                                                    --format progress \
+          command: bundle exec appraisal 4.2 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
       - store_test_results:
-          path: test-results  
+          path: test_results  
           
   test_5_0:
     docker: 
@@ -68,13 +65,10 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.0 rspec --profile 10 \
-                                                                                        --format RspecJunitFormatter \
-                                                                                        --out test_results/rspec.xml \
-                                                                                        --format progress \
+          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.0 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
       - store_test_results:
-          path: test-results
+          path: test_results
 
   test_5_1:
     docker: 
@@ -106,13 +100,10 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.1 rspec --profile 10 \
-                                                                                        --format RspecJunitFormatter \
-                                                                                        --out test_results/rspec.xml \
-                                                                                        --format progress \
+          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.1 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
       - store_test_results:
-          path: test-results
+          path: test_results
 
 workflows:
   version: 2
