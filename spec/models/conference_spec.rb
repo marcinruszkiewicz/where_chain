@@ -50,6 +50,22 @@ describe Conference do
     it '.not.gt' do
       expect(Conference.where.not.gt(number: 5)).to match_array [first]
     end
+
+    it '.gt compares dates' do
+      expect(Conference.where.gt(date: DateTime.new(2017, 3, 18))).to match_array [first]
+    end
+
+    it '.gte compares dates' do
+      expect(Conference.where.gte(date: DateTime.new(2017, 3, 18))).to match_array [first, second]
+    end
+
+    it '.gt compares strings' do
+      expect(Conference.where.gt(name: 'Something else')).to match_array [first]
+    end
+
+    it '.gte compares strings' do
+      expect(Conference.where.gte(name: 'Something else')).to match_array [first, second]
+    end
   end
 
   context 'LESS THAN' do
@@ -64,78 +80,62 @@ describe Conference do
     it '.not.lt' do
       expect(Conference.where.not.lt(number: 10)).to match_array [second]
     end
+
+    it '.lt compares dates' do
+      expect(Conference.where.lt(date: DateTime.new(2018, 3, 18))).to match_array [second]
+    end
+
+    it '.lte compares dates' do
+      expect(Conference.where.lte(date: DateTime.new(2018, 3, 18))).to match_array [first, second]
+    end
+
+    it '.lt compares strings' do
+      expect(Conference.where.lt(name: 'Wroclove.rb')).to match_array [second]
+    end
+
+    it '.lte compares strings' do
+      expect(Conference.where.lte(name: 'Wroclove.rb')).to match_array [first, second]
+    end    
   end
 
   context 'wrong values' do
     context '.gt' do
       it 'does not accept array values' do
-        expect{ Conference.where.gt(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a number'
+        expect{ Conference.where.gt(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
 
-      it 'does not accept a string' do
-        expect{ Conference.where.gt(number: 'foobar') }.to raise_error ArgumentError, 'The value passed to this method should be a number'
-      end
-
-      it 'accepts integers' do 
-        expect{ Conference.where.gt(number: 1) }.not_to raise_error
-      end
-
-      it 'accepts floats' do
-        expect{ Conference.where.gt(number: 1.5) }.not_to raise_error
+      it 'does not accept hash values' do
+        expect{ Conference.where.gt(number: { bigger: :better }) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
     end
 
     context '.gte' do
       it 'does not accept array values' do
-        expect{ Conference.where.gte(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a number'
+        expect{ Conference.where.gte(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
 
-      it 'does not accept a string' do
-        expect{ Conference.where.gte(number: 'foobar') }.to raise_error ArgumentError, 'The value passed to this method should be a number'
-      end
-
-      it 'accepts integers' do 
-        expect{ Conference.where.gte(number: 1) }.not_to raise_error
-      end
-
-      it 'accepts floats' do
-        expect{ Conference.where.gte(number: 1.5) }.not_to raise_error
+      it 'does not accept hash values' do
+        expect{ Conference.where.gte(number: { bigger: :better }) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
     end
 
     context '.lt' do
       it 'does not accept array values' do
-        expect{ Conference.where.lt(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a number'
+        expect{ Conference.where.lt(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
 
-      it 'does not accept a string' do
-        expect{ Conference.where.lt(number: 'foobar') }.to raise_error ArgumentError, 'The value passed to this method should be a number'
-      end
-
-      it 'accepts integers' do 
-        expect{ Conference.where.lt(number: 1) }.not_to raise_error
-      end
-
-      it 'accepts floats' do
-        expect{ Conference.where.lt(number: 1.5) }.not_to raise_error
+      it 'does not accept hash values' do
+        expect{ Conference.where.lt(number: { bigger: :better }) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
     end
 
     context '.lte' do
       it 'does not accept array values' do
-        expect{ Conference.where.lte(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a number'
+        expect{ Conference.where.lte(number: [1, 2, 3]) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
 
-      it 'does not accept a string' do
-        expect{ Conference.where.lte(number: 'foobar') }.to raise_error ArgumentError, 'The value passed to this method should be a number'
-      end
-
-      it 'accepts integers' do 
-        expect{ Conference.where.lte(number: 1) }.not_to raise_error
-      end
-
-      it 'accepts floats' do
-        expect{ Conference.where.lte(number: 1.5) }.not_to raise_error
+      it 'does not accept hash values' do
+        expect{ Conference.where.lte(number: { bigger: :better }) }.to raise_error ArgumentError, 'The value passed to this method should be a valid type'
       end
     end
   end

@@ -51,7 +51,9 @@ module ActiveRecord
 
       def ensure_numeric_values(opts)
         opts.each_pair do |key, value|
-          raise ArgumentError, 'The value passed to this method should be a number' unless value.is_a?(Numeric)
+          if value.is_a?(Hash) || value.is_a?(Array)
+            raise ArgumentError, 'The value passed to this method should be a valid type' 
+          end
         end
       end
 
