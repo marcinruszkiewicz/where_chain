@@ -31,7 +31,7 @@ module ActiveRecord
             equal_where_clause_predicate = equal_where_clause.send(:predicates).first
 
             new_predicate = arel_node(node_type, infix, equal_where_clause_predicate)
-            new_where_clause = Relation::WhereClause.new([new_predicate], equal_where_clause.binds)
+            new_where_clause = build_where_clause(new_predicate, equal_where_clause)
             if @invert
               s.where_clause += new_where_clause.invert
             else
@@ -39,7 +39,15 @@ module ActiveRecord
             end
           end
         end
-      end      
+      end
+
+      def build_where_clause(new_predicate, old_where_clause)
+        if old_where_clause.respond_to?(:binds)
+          Relation::WhereClause.new([new_predicate], old_where_clause.binds)
+        else
+          Relation::WhereClause.new([new_predicate])
+        end
+      end   
     end
   end
 end
