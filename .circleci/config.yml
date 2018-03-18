@@ -13,8 +13,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
-            - wherechain-bundle-
+            - 4_2-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - 4_2-wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -25,7 +25,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          key: 4_2-wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run: 
@@ -47,8 +47,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
-            - wherechain-bundle-
+            - 5_0-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - 5_0-wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -59,7 +59,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          key: 5_0-wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -82,8 +82,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
-            - wherechain-bundle-
+            - 5_1-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - 5_1-wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -94,7 +94,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          key: 5_1-wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -117,8 +117,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
-            - wherechain-bundle-
+            - 5_2-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - 5_2-wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -129,7 +129,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          key: 5_2-wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
