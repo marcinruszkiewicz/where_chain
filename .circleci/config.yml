@@ -1,33 +1,36 @@
+default_job: &default_job
+  working_directory: ~/where_chain
+  steps:
+    - checkout
+    - run:
+        name: Which bundler?
+        command: bundle -v
+
+    - restore_cache:
+        keys:
+          - wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          - wherechain-bundle-
+
+    - run:
+        name: Bundle Install
+        command: bundle check || bundle install
+
+    - run: 
+        name: 'Setup appraisals'
+        command: bundle exec appraisal install
+
+    - save_cache:
+        key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
 version: 2
 jobs:
   test_4_2:
+    <<: *default_job
     docker: 
       - image: circleci/ruby:2.5-node
-    working_directory: ~/where_chain
     steps:
-      - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
-      - restore_cache:
-          keys:
-            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
-            - where_chain-bundle-
-
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-
-      - run: 
-          name: 'Setup appraisals'
-          command: bundle exec appraisal install
-
-      - save_cache:
-          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
       - run: 
           name: 'Tests'
           command: bundle exec appraisal 4.2 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
@@ -47,8 +50,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
-            - where_chain-bundle-
+            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -59,7 +62,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -82,8 +85,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
-            - where_chain-bundle-
+            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -94,7 +97,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -117,8 +120,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - where_chain-bundle-{{ checksum "Gemfile.lock" }}
-            - where_chain-bundle-
+            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - wherechain-bundle-
 
       - run:
           name: Bundle Install
@@ -129,7 +132,7 @@ jobs:
           command: bundle exec appraisal install
 
       - save_cache:
-          key: where_chain-bundle-{{ checksum "Gemfile.lock" }}
+          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
