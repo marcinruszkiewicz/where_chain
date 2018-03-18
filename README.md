@@ -1,4 +1,4 @@
-o[![CircleCI](https://circleci.com/gh/marcinruszkiewicz/where_chain.svg?style=svg)](https://circleci.com/gh/marcinruszkiewicz/where_chain)
+[![CircleCI](https://circleci.com/gh/marcinruszkiewicz/where_chain.svg?style=svg)](https://circleci.com/gh/marcinruszkiewicz/where_chain)
 
 # WhereChain
 
@@ -42,7 +42,7 @@ Post.where.gt(comments: 5).lt(comments: 10)
 
 You need to prepend each of the new methods with either `.where` or `.where.not` for them to work.
 
-All the methods accept all proper types as values, except Arrays and Hashes. These will **not** work and will raise a relevant ArgumentError exception:
+All the methods accept a Hash attribute and can compare all proper types as values, except Arrays and Hashes. These will **not** work and will raise an ArgumentError exception:
 
 ```ruby
 Post.where.gt(comments: [1, 2, 3])
