@@ -32,7 +32,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation, except: %w(ar_internal_metadata schema_migrations))
   end
 
   config.around(:each) do |example|

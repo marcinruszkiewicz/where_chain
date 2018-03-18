@@ -14,6 +14,8 @@ WhereChain depends on the Active Record gem in a version higher than 4.2, due to
 
 ## Usage
 
+Some examples of using the gem and what can be replaced with it:
+
 | SQL string | with WhereChain |
 |------------|-----------------|
 |`Post.where('comments > ?', 5)` | `Post.where.gt(comments: 5)` |
@@ -22,7 +24,8 @@ WhereChain depends on the Active Record gem in a version higher than 4.2, due to
 |`Post.where('comments <= ?', 5)` | `Post.where.lte(comments: 5)` |
 |`Post.where('name LIKE ?', "%foo%")` | `Post.where.like(name: "%foo%")` |
 |`Post.where('name NOT LIKE ?', "%foo%")` | `Post.where.unlike(name: "%foo%")` |
-
+|`Post.where('comments > ? AND shares > ?', 5, 10)` | `Post.where.gt({ comments: 5, shares: 10 })` |
+|`Post.where('comments > ? OR shares > ?', 5, 10)` | `Post.where.gt(comments: 5).or(Post.where.gt(shares: 10))` |
 
 You can now also chain the methods in your Active Record queries:
 
@@ -44,6 +47,8 @@ All the methods accept all proper types as values, except Arrays and Hashes. The
 ```ruby
 Post.where.gt(comments: [1, 2, 3])
 Post.where.gt(comments: { bad: :thing })
+
+ArgumentError: The value passed to this method should be a valid type
 ```
 
 ## Installation

@@ -28,31 +28,33 @@ module ActiveRecord
       alias not_like unlike # maintain compatibility with activerecord-like gem
 
       def gt(opts, *rest)
-        ensure_numeric_values(opts)
+        ensure_proper_attributes(opts)
         prepare_where(Arel::Nodes::InfixOperation, '>', opts, rest)
       end
 
       def gte(opts, *rest)
-        ensure_numeric_values(opts)
+        ensure_proper_attributes(opts)
         prepare_where(Arel::Nodes::InfixOperation, '>=', opts, rest)
       end
 
       def lt(opts, *rest)
-        ensure_numeric_values(opts)
+        ensure_proper_attributes(opts)
         prepare_where(Arel::Nodes::InfixOperation, '<', opts, rest)
       end
 
       def lte(opts, *rest)
-        ensure_numeric_values(opts)
+        ensure_proper_attributes(opts)
         prepare_where(Arel::Nodes::InfixOperation, '<=', opts, rest)
       end
 
       private 
 
-      def ensure_numeric_values(opts)
+      def ensure_proper_attributes(opts)
+        raise ArgumentError, 'This method requires a Hash as an argument.' unless opts.is_a?(Hash)
+
         opts.each_pair do |key, value|
           if value.is_a?(Hash) || value.is_a?(Array)
-            raise ArgumentError, 'The value passed to this method should be a valid type' 
+            raise ArgumentError, 'The value passed to this method should be a valid type.' 
           end
         end
       end

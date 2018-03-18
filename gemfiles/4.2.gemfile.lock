@@ -123,6 +123,8 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    rspec_junit_formatter (0.3.0)
+      rspec-core (>= 2, < 4, != 2.12.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -146,6 +148,7 @@ DEPENDENCIES
   pry-rails
   rails (~> 4.2.0)
   rspec-rails
+  rspec_junit_formatter
   sqlite3
   where_chain!
 

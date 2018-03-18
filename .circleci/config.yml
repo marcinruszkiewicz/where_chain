@@ -30,10 +30,14 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command: bundle exec appraisal 4.2 rspec
+          command:  bundle exec appraisal 4.2 rspec --profile 10 \
+                                                    --format RspecJunitFormatter \
+                                                    --out test_results/rspec.xml \
+                                                    --format progress \
 
       - store_test_results:
           path: test-results  
+          
   test_5_0:
     docker: 
       - image: circleci/ruby:2.5-node
@@ -64,7 +68,10 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command: bundle exec appraisal 5.0 rspec
+          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.0 rspec --profile 10 \
+                                                                                        --format RspecJunitFormatter \
+                                                                                        --out test_results/rspec.xml \
+                                                                                        --format progress \
 
       - store_test_results:
           path: test-results
@@ -99,7 +106,10 @@ jobs:
 
       - run: 
           name: 'Tests'
-          command: bundle exec appraisal 5.1 rspec
+          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.1 rspec --profile 10 \
+                                                                                        --format RspecJunitFormatter \
+                                                                                        --out test_results/rspec.xml \
+                                                                                        --format progress \
 
       - store_test_results:
           path: test-results

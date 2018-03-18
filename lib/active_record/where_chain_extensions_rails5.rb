@@ -8,7 +8,7 @@ module ActiveRecord
       include WhereChainSharedMethods
 
       def not(opts = :chain, *rest)
-        if opts == :chain
+        if :chain == opts
           @invert = true
           return self
         end
