@@ -10,14 +10,16 @@ Within the same comment there were also two new methods that [didn't survive to 
 
 This gem brings these two methods back and extends WhereChain with additional methods: `.gt`, `.gte`, `.lt` and `.lte`, so that by using it you can replace the SQL strings like `Post.where('comments > 5')` with `Post.where.gt(comments: 5)`.
 
+WhereChain depends on the Active Record gem in a version higher than 4.2, due to problems with Ruby versions lesser than 2.4. Rails 4.2 is already the version that's being maintained, so you probably should not use an earlier one anyway. The gem is tested on the latest Ruby and Rails versions.
+
 ## Usage
 
 | SQL string | with WhereChain |
 |------------|-----------------|
-|`Post.where('comments > 5')` | `Post.where.gt(comments: 5)` |
-|`Post.where('comments >= 5')` | `Post.where.gte(comments: 5)` |
-|`Post.where('comments < 5')` | `Post.where.lt(comments: 5)` |
-|`Post.where('comments <= 5')` | `Post.where.lte(comments: 5)` |
+|`Post.where('comments > ?', 5)` | `Post.where.gt(comments: 5)` |
+|`Post.where('comments >= ?', 5)` | `Post.where.gte(comments: 5)` |
+|`Post.where('comments < ?', 5)` | `Post.where.lt(comments: 5)` |
+|`Post.where('comments <= ?', 5)` | `Post.where.lte(comments: 5)` |
 |`Post.where('name LIKE ?', "%foo%")` | `Post.where.like(name: "%foo%")` |
 |`Post.where('name NOT LIKE ?', "%foo%")` | `Post.where.unlike(name: "%foo%")` |
 
@@ -36,6 +38,13 @@ Post.where.gt(comments: 5).lt(comments: 10)
 ```
 
 You need to prepend each of the new methods with either `.where` or `.where.not` for them to work.
+
+All the methods accept all proper types as values, except Arrays and Hashes. These will **not** work:
+
+```ruby
+Post.where.gt(comments: [1, 2, 3])
+Post.where.gt(comments: { bad: :thing })
+```
 
 ## Installation
 Add this line to your application's Gemfile:
