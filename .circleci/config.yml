@@ -1,35 +1,33 @@
-default_steps: &default_steps
-  - checkout
-  - run:
-      name: Which bundler?
-      command: bundle -v
-
-  - restore_cache:
-      keys:
-        - wherechain-bundle-{{ checksum "Gemfile.lock" }}
-        - wherechain-bundle-
-
-  - run:
-      name: Bundle Install
-      command: bundle check || bundle install
-
-  - run: 
-      name: 'Setup appraisals'
-      command: bundle exec appraisal install
-
-  - save_cache:
-      key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
-      paths:
-        - vendor/bundle
-
 version: 2
+
 jobs:
   test_4_2:
     working_directory: ~/where_chain
     docker: 
       - image: circleci/ruby:2.5-node
     steps:
-      <<: *default_steps
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            - wherechain-bundle-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: 
+          name: 'Setup appraisals'
+          command: bundle exec appraisal install
+
+      - save_cache:
+          key: wherechain-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run: 
           name: 'Tests'
           command: bundle exec appraisal 4.2 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
@@ -38,9 +36,9 @@ jobs:
           path: test_results  
           
   test_5_0:
+    working_directory: ~/where_chain
     docker: 
       - image: circleci/ruby:2.5-node
-    working_directory: ~/where_chain
     steps:
       - checkout
       - run:
@@ -73,9 +71,9 @@ jobs:
           path: test_results
 
   test_5_1:
+    working_directory: ~/where_chain
     docker: 
       - image: circleci/ruby:2.5-node
-    working_directory: ~/where_chain
     steps:
       - checkout
       - run:
@@ -108,9 +106,9 @@ jobs:
           path: test_results
 
   test_5_2:
+    working_directory: ~/where_chain
     docker: 
       - image: circleci/ruby:2.5-node
-    working_directory: ~/where_chain
     steps:
       - checkout
       - run:
@@ -146,7 +144,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      # - test_5_2
-      # - test_5_1
-      # - test_5_0
+      - test_5_2
+      - test_5_1
+      - test_5_0
       - test_4_2
