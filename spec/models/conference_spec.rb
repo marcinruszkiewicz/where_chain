@@ -111,7 +111,7 @@ describe Conference do
 
     it '.lte can be used with multiple fields' do
       expect(Conference.where.lte({ date: DateTime.new(2018, 3, 18), number: 10})).to match_array [first, second]
-    end     
+    end
   end
 
   context 'wrong values' do
@@ -148,7 +148,7 @@ describe Conference do
 
       it 'does not accept arrays' do
         expect{ Conference.where.gte([{number: 5}, 'name >= ?'], 'abc') }.to raise_error ArgumentError, 'This method requires a Hash as an argument.'
-      end      
+      end
     end
 
     context '.lt' do
@@ -166,7 +166,7 @@ describe Conference do
 
       it 'does not accept arrays' do
         expect{ Conference.where.lt([{number: 5}, 'name < ?'], 'abc') }.to raise_error ArgumentError, 'This method requires a Hash as an argument.'
-      end      
+      end
     end
 
     context '.lte' do
@@ -184,7 +184,7 @@ describe Conference do
 
       it 'does not accept arrays' do
         expect{ Conference.where.lte([{number: 5}, 'name <= ?'], 'abc') }.to raise_error ArgumentError, 'This method requires a Hash as an argument.'
-      end      
+      end
     end
   end
 end
