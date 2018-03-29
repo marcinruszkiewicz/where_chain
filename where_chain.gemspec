@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = WhereChain::VERSION
   s.authors     = ["Marcin Ruszkiewicz"]
   s.email       = ["marcin.ruszkiewicz@polcode.net"]
-  s.homepage    = "https://github.com/marcinruszkiewicz"
+  s.homepage    = "https://github.com/marcinruszkiewicz/where_chain"
   s.summary     = "WhereChain extensions - Model.where.lt(created_at: Date.today)"
   s.description = "This is a Rails plugin that extends Active Record with additional methods: .like, .unlike, .gt, .gte, .lt and .lte, so that you can replace the SQL strings like Post.where('comments > 5') with Post.where.gt(comments: 5)"
   s.license     = "MIT"
