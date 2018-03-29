@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    where_chain (0.2.1)
+    where_chain (0.2.2)
       activerecord (>= 4.2)
 
 GEM

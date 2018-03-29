@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["marcin.ruszkiewicz@polcode.net"]
   s.homepage    = "https://github.com/marcinruszkiewicz"
   s.summary     = "WhereChain extensions - Model.where.lt(created_at: Date.today)"
-  s.description = "WhereChain is a Rails plugin that provides extensions for ActiveRecord. Since Rails 4 you can do Model.where.not(name: 'Bad') and this module adds "
+  s.description = "This is a Rails plugin that extends Active Record with additional methods: .like, .unlike, .gt, .gte, .lt and .lte, so that you can replace the SQL strings like Post.where('comments > 5') with Post.where.gt(comments: 5)"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
