@@ -2,7 +2,7 @@
 
 # WhereChain
 
-In Rails, we usually use Active Record, which allows us to escape from writing SQL code like this `SELECT * FROM posts WHERE posts.name = 'Foo'` and allows us to write `Post.where(name: 'Foo')` instead. However, this has always been limited to matching equality, so you still have to write `Post.where('comments > ?', 5)` to get Posts that have more than 5 comments. 
+In Rails, we usually use Active Record, which allows us to escape from writing SQL code like this `SELECT * FROM posts WHERE posts.name = 'Foo'` and allows us to write `Post.where(name: 'Foo')` instead. However, this has always been limited to matching equality, so you still have to write `Post.where('comments > ?', 5)` to get Posts that have more than 5 comments.
 
 In the older versions, you also had to write `Post.where('name IS NOT null')` to do a negation. Rails 4.0 added a class called `WhereChain` that added some [new possibilities](https://github.com/rails/rails/commit/de75af7acc5c05c708443de40e78965925165217), one of which was a `not` method. The proper way to write  became `Post.where.not(name: nil)` instead.
 
@@ -79,7 +79,22 @@ $ gem install where_chain
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Make sure all the tests pass on all versions
+6. Create new Pull Request
+
+Running all the tests for all Rails version targets:
+
+```bash
+$ bundle exec appraisal rspec
+```
+
+Running tests for a specific version:
+
+```bash
+$ bundle exec appraisal 5.0 rspec
+```
+
+You can see all the targets to use instead of `5.0` in the `Appraisals` file.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
