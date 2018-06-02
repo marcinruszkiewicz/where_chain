@@ -3,7 +3,7 @@ version: 2
 jobs:
   test_4_2:
     working_directory: ~/where_chain
-    docker: 
+    docker:
       - image: circleci/ruby:2.5-node
     steps:
       - checkout
@@ -20,7 +20,7 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
 
-      - run: 
+      - run:
           name: 'Setup appraisals'
           command: bundle exec appraisal install
 
@@ -28,16 +28,16 @@ jobs:
           key: 4_2-wherechain-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run: 
+      - run:
           name: 'Tests'
           command: bundle exec appraisal 4.2 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
       - store_test_results:
-          path: test_results  
-          
+          path: test_results
+
   test_5_0:
     working_directory: ~/where_chain
-    docker: 
+    docker:
       - image: circleci/ruby:2.5-node
     steps:
       - checkout
@@ -54,7 +54,7 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
 
-      - run: 
+      - run:
           name: 'Setup appraisals'
           command: bundle exec appraisal install
 
@@ -63,7 +63,7 @@ jobs:
           paths:
             - vendor/bundle
 
-      - run: 
+      - run:
           name: 'Tests'
           command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.0 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
@@ -72,7 +72,7 @@ jobs:
 
   test_5_1:
     working_directory: ~/where_chain
-    docker: 
+    docker:
       - image: circleci/ruby:2.5-node
     steps:
       - checkout
@@ -89,7 +89,7 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
 
-      - run: 
+      - run:
           name: 'Setup appraisals'
           command: bundle exec appraisal install
 
@@ -98,7 +98,7 @@ jobs:
           paths:
             - vendor/bundle
 
-      - run: 
+      - run:
           name: 'Tests'
           command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.1 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
@@ -107,7 +107,7 @@ jobs:
 
   test_5_2:
     working_directory: ~/where_chain
-    docker: 
+    docker:
       - image: circleci/ruby:2.5-node
     steps:
       - checkout
@@ -124,7 +124,7 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
 
-      - run: 
+      - run:
           name: 'Setup appraisals'
           command: bundle exec appraisal install
 
@@ -133,12 +133,12 @@ jobs:
           paths:
             - vendor/bundle
 
-      - run: 
+      - run:
           name: 'Tests'
-          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.2rc rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
+          command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 5.2 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
 
       - store_test_results:
-          path: test_results          
+          path: test_results
 
 workflows:
   version: 2
