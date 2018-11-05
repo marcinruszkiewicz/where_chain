@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    where_chain (0.2.2)
+    where_chain (0.2.3)
       activerecord (>= 4.2)
 
 GEM
@@ -117,4 +117,4 @@ DEPENDENCIES
   where_chain!
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
