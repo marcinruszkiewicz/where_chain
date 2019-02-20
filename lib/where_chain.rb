@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_record/where_chain_shared_methods'
 
 # Active Record changed a lot in Rails 5 and 4 is still supported

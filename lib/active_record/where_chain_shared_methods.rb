@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActiveRecord
   module WhereChainSharedMethods
     extend ActiveSupport::Concern
@@ -30,7 +32,7 @@ module ActiveRecord
       def unlike(opts, *rest)
         prepare_where(Arel::Nodes::DoesNotMatch, nil, opts, rest)
       end
-      alias not_like unlike
+      alias_method :not_like, :unlike
 
       # Returns a new relation expressing a greater than condition in WHERE
       # according to the conditions in an argument hash
@@ -79,7 +81,7 @@ module ActiveRecord
       def ensure_proper_attributes(opts)
         raise ArgumentError, 'This method requires a Hash as an argument.' unless opts.is_a?(Hash)
 
-        opts.each_pair do |key, value|
+        opts.each_pair do |_key, value|
           if value.is_a?(Hash) || value.is_a?(Array)
             raise ArgumentError, 'The value passed to this method should be a valid type.'
           end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 
-app_path = File.expand_path("../dummy",  __FILE__)
+app_path = File.expand_path('dummy', __dir__)
 $LOAD_PATH.unshift(app_path) unless $LOAD_PATH.include?(app_path)
 
 require 'config/environment'
@@ -32,7 +34,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation, except: %w(ar_internal_metadata schema_migrations))
+    DatabaseCleaner.clean_with(:truncation, except: %w[ar_internal_metadata schema_migrations])
   end
 
   config.around(:each) do |example|

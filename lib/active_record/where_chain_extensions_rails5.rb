@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActiveRecord
   # Ruby complains about missing the class if we try to patch it without it
   class Relation
@@ -21,7 +23,7 @@ module ActiveRecord
       #
       # Note: This is the Active Record 5 version.
       def not(opts = :chain, *rest)
-        if :chain == opts
+        if opts == :chain
           @invert = true
           return self
         end
@@ -30,7 +32,7 @@ module ActiveRecord
 
         where_clause = @scope.send(:where_clause_factory).build(opts, rest)
 
-        @scope.references!(PredicateBuilder.references(opts)) if Hash === opts
+        @scope.references!(PredicateBuilder.references(opts)) if opts.is_a?(Hash)
         @scope.where_clause += where_clause.invert
         @scope
       end
@@ -49,11 +51,11 @@ module ActiveRecord
 
             new_predicate = arel_node(node_type, infix, equal_where_clause_predicate)
             new_where_clause = build_where_clause(new_predicate, equal_where_clause)
-            if @invert
-              s.where_clause += new_where_clause.invert
-            else
-              s.where_clause += new_where_clause
-            end
+            s.where_clause += if @invert
+                                new_where_clause.invert
+                              else
+                                new_where_clause
+                              end
           end
         end
       end

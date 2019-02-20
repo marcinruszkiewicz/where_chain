@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActiveRecord
   module QueryMethods
     class WhereChain
@@ -34,7 +36,7 @@ module ActiveRecord
           end
         end
 
-        @scope.references!(PredicateBuilder.references(opts)) if Hash === opts
+        @scope.references!(PredicateBuilder.references(opts)) if opts.is_a?(Hash)
         @scope.where_values += where_value
         @scope
       end
