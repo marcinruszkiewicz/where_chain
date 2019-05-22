@@ -7,7 +7,7 @@ module ActiveRecord
     included do
       # Initialize the chain with a scope and a toggle to invert the generated
       # where statement
-      def initialize(scope, invert=false)
+      def initialize(scope, invert = false)
         @scope = scope
         @invert = invert
       end

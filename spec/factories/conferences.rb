@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :conference do
     number { 5 }
-    name { "Wroclove.rb" }
+    name { 'Wroclove.rb' }
     date { DateTime.new(2018, 3, 18) }
 
     trait :other_conference do

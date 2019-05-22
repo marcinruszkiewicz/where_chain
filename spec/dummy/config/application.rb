@@ -6,7 +6,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "where_chain"
+require 'where_chain'
 
 module Dummy
   class Application < Rails::Application

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-$: << File.expand_path(File.expand_path("../../test", __FILE__))
+$: << File.expand_path(File.expand_path('../test', __dir__))
 
-require "bundler/setup"
-require "rails/plugin/test"
+require 'bundler/setup'
+require 'rails/plugin/test'

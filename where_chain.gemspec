@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('lib', __dir__)
 
 # Maintain your gem's version:
 require 'where_chain/version'
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.description = "This is a Rails plugin that extends Active Record with additional methods: .like, .unlike, .gt, .gte, .lt and .lte, so that you can replace the SQL strings like Post.where('comments > 5') with Post.where.gt(comments: 5)"
   s.license     = 'MIT'
 
-  s.files = Dir["{app,config,db,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   s.add_dependency 'activerecord', '>= 4.2'
 
