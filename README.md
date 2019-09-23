@@ -84,6 +84,12 @@ $ gem install where_chain
 
 ## Testing the code
 
+Before running any test, you should finish installing the appraised gems:
+
+```bash
+$ bundle exec appraisal install
+```
+
 Running all the tests for all Rails version targets:
 
 ```bash
