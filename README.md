@@ -10,7 +10,7 @@ Within the same comment there were also two new methods that [didn't survive to 
 
 This gem brings these two methods back and extends WhereChain with additional methods: `.gt`, `.gte`, `.lt` and `.lte`, so that by using it you can replace the SQL strings like `Post.where('comments > 5')` with `Post.where.gt(comments: 5)`.
 
-WhereChain depends on the Active Record gem in a version higher than 4.2, due to problems with Ruby versions lesser than 2.4. Rails 4.2 is already the version that's being maintained, so you probably should not use an earlier one anyway. The gem is tested on the latest Ruby and all current Rails versions - 4.2, 5.0, 5.1 and 5.2.
+WhereChain depends on the Active Record gem in a version higher than 4.2, due to problems with Ruby versions lesser than 2.4. Rails 4.2 is already the version that's being maintained, so you probably should not use an earlier one anyway. The gem is tested on the latest Ruby and all current Rails versions - 4.2, 5.0, 5.1, 5.2 and 6.0.
 
 ## Usage
 
