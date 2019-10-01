@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module WhereChain
-  VERSION = '0.2.5'
+  VERSION = '0.3'
 end

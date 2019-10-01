@@ -1,3 +1,7 @@
+## 0.3
+
+- [x] Rails 6 support (@dodo121)
+
 ## 0.2.5
 
 - [x] Nokogiri security update
