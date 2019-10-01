@@ -140,10 +140,46 @@ jobs:
       - store_test_results:
           path: test_results
 
+  test_6_0:
+      working_directory: ~/where_chain
+      docker:
+        - image: circleci/ruby:2.5-node
+      steps:
+        - checkout
+        - run:
+            name: Which bundler?
+            command: bundle -v
+
+        - restore_cache:
+            keys:
+              - 6_0-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+              - 6_0-wherechain-bundle-
+
+        - run:
+            name: Bundle Install
+            command: bundle check || bundle install
+
+        - run:
+            name: 'Setup appraisals'
+            command: bundle exec appraisal install
+
+        - save_cache:
+            key: 6_0-wherechain-bundle-{{ checksum "Gemfile.lock" }}
+            paths:
+              - vendor/bundle
+
+        - run:
+            name: 'Tests'
+            command: DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec appraisal 6.0 rspec --profile 10 --format RspecJunitFormatter --out test_results/rspec.xml --format progress
+
+        - store_test_results:
+            path: test_results
+
 workflows:
   version: 2
   build_and_test:
     jobs:
+      - test_6_0
       - test_5_2
       - test_5_1
       - test_5_0
