@@ -1,3 +1,5 @@
+- [x] Change to TravisCI test matrix
+
 ## 0.3
 
 - [x] Rails 6 support (@dodo121)

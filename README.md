@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/where_chain.svg)](https://badge.fury.io/rb/where_chain) [![CircleCI](https://circleci.com/gh/marcinruszkiewicz/where_chain.svg?style=shield)](https://circleci.com/gh/marcinruszkiewicz/where_chain)
+[![Gem Version](https://badge.fury.io/rb/where_chain.svg)](https://badge.fury.io/rb/where_chain) [![TravisCI](https://travis-ci.com/marcinruszkiewicz/where_chain.svg?branch=master)](https://travis-ci.com/marcinruszkiewicz/where_chain)
 
 # WhereChain
 
