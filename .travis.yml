@@ -1,8 +1,8 @@
 sudo: false
 language: ruby
 env:
-  USE_DB=postgres
-  USE_DB=sqlite3
+  - USE_DB=postgres
+  - USE_DB=sqlite3
 rvm:
   - 2.3.8
   - 2.4.7
