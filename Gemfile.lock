@@ -63,6 +63,7 @@ GEM
     parallel (1.17.0)
     parser (2.6.4.1)
       ast (~> 2.4.0)
+    pg (1.1.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -125,6 +126,7 @@ DEPENDENCIES
   appraisal
   database_cleaner
   factory_bot_rails
+  pg (~> 1.1.4)
   pry-rails
   rspec-rails
   rspec_junit_formatter

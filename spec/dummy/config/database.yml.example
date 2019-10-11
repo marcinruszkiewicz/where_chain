@@ -1,0 +1,32 @@
+sqlite3: &sqlite3
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+sqlite3_dev_db: &sqlite3_dev_db
+  <<: *sqlite3
+  database: db/development.sqlite3
+
+sqlite3_test_db: &sqlite3_test_db
+  <<: *sqlite3
+  database: db/test.sqlite3
+
+postgres: &postgres
+  adapter: postgresql
+  port: 5433
+  username: YOUR_POSTGRES_USERNAME
+  password: YOUR_POSTGRES_PASSWORD
+
+postgres_dev_db: &postgres_dev_db
+  <<: *postgres
+  database: where_chain_dev
+
+postgres_test_db: &postgres_test_db
+  <<: *postgres
+  database: where_chain_test
+
+development:
+  <<: <%= "*#{ENV.fetch('USE_DB', 'sqlite3')}_dev_db" %>
+
+test:
+  <<: <%= "*#{ENV.fetch('USE_DB', 'sqlite3')}_test_db" %>
