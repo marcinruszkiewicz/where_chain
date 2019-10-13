@@ -10,7 +10,9 @@ require 'where_chain'
 
 module Dummy
   class Application < Rails::Application
-    config.assets.enabled = false
+    config.api_only = true
+
+    # config.assets.enabled = false
     # Initialize configuration defaults for originally generated Rails version.
     # config.load_defaults 5.1
 
