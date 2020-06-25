@@ -1,3 +1,6 @@
+## 0.3.1
+
+- [x] Security updates
 - [x] Change to TravisCI test matrix
 
 ## 0.3
