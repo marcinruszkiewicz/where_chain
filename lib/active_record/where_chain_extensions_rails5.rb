@@ -8,6 +8,7 @@ module ActiveRecord
 
   module QueryMethods
     class WhereChain
+      include ActiveModel::ForbiddenAttributesProtection
       include WhereChainSharedMethods
 
       # Returns a new relation expressing WHERE + NOT condition
@@ -30,9 +31,9 @@ module ActiveRecord
 
         opts = sanitize_forbidden_attributes(opts)
 
-        where_clause = @scope.send(:where_clause_factory).build(opts, rest)
+        where_clause = where_clause_factory_build(opts, rest)
 
-        @scope.references!(PredicateBuilder.references(opts)) if opts.is_a?(Hash)
+        @scope.references!(PredicateBuilder.references(opts.stringify_keys)) if opts.is_a?(Hash)
         @scope.where_clause += where_clause.invert
         @scope
       end
@@ -46,7 +47,7 @@ module ActiveRecord
       def prepare_where(node_type, infix, opts, rest)
         @scope.tap do |s|
           opts.each_pair do |key, value|
-            equal_where_clause = s.send(:where_clause_factory).build({ key => value }, rest)
+            equal_where_clause = where_clause_factory_build({ key => value }, rest)
             equal_where_clause_predicate = equal_where_clause.send(:predicates).first
 
             new_predicate = arel_node(node_type, infix, equal_where_clause_predicate)
@@ -67,6 +68,16 @@ module ActiveRecord
           Relation::WhereClause.new([new_predicate], old_where_clause.binds)
         else
           Relation::WhereClause.new([new_predicate])
+        end
+      end
+
+      # Active Record 6.1 removed the where_clause_factory.build method
+      # method was replaced by build_where_clause
+      def where_clause_factory_build(opts, rest = [])
+        if ActiveRecord.version.release >= Gem::Version.new('6.1.0')
+          @scope.send(:build_where_clause, opts, rest)
+        else
+          @scope.send(:where_clause_factory).build(opts, rest)
         end
       end
     end
