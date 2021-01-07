@@ -20,15 +20,21 @@ matrix:
   exclude:
   - rvm: 2.3.8
     gemfile: gemfiles/6.0.gemfile
+  - rvm: 2.3.8
     gemfile: gemfiles/6.1.gemfile
   - rvm: 2.4.10
     gemfile: gemfiles/6.0.gemfile
+  - rvm: 2.4.10
     gemfile: gemfiles/6.1.gemfile
   - rvm: 2.7.2
     gemfile: gemfiles/4.2.gemfile
   - rvm: 3.0.0
     gemfile: gemfiles/4.2.gemfile
+  - rvm: 3.0.0
     gemfile: gemfiles/5.0.gemfile
+  - rvm: 3.0.0
     gemfile: gemfiles/5.1.gemfile
+  - rvm: 3.0.0
     gemfile: gemfiles/5.2.gemfile
+  - rvm: 3.0.0
     gemfile: gemfiles/6.0.gemfile
