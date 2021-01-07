@@ -1,3 +1,9 @@
+## 0.4.0
+
+- [x] Rails 6.1 support (@jonian)
+- [x] Update Travis matrix to support new Rails version
+- [x] Security updates
+
 ## 0.3.1
 
 - [x] Security updates
