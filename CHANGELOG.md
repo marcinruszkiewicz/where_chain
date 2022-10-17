@@ -1,3 +1,7 @@
+## 0.5
+
+- [x] Rails 7 support (@bpsimao-esl)
+
 ## 0.4.0
 
 - [x] Rails 6.1 support (@jonian)
