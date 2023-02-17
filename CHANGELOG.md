@@ -1,3 +1,9 @@
+## 0.5.0
+
+- [x] Rails 7 support
+- [x] Dropped testing for ancient Rails versions
+- [x] Dropped testing for ancient Ruby versions
+
 ## 0.4.0
 
 - [x] Rails 6.1 support (@jonian)
