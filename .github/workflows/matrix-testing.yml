@@ -11,7 +11,6 @@ jobs:
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
-    steps:
     - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
