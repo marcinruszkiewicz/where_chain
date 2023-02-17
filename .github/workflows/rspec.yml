@@ -1,4 +1,4 @@
-name: Matrix Testing
+name: Rspec
 on: [push, pull_request]
 jobs:
   test:
