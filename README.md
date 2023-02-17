@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/where_chain.svg)](https://badge.fury.io/rb/where_chain) ![TravisCI](https://github.com/marcinruszkiewicz/where_chain/actions/workflows/rspec/badge.svg)
+[![Gem Version](https://badge.fury.io/rb/where_chain.svg)](https://badge.fury.io/rb/where_chain) ![TravisCI](https://github.com/marcinruszkiewicz/where_chain/actions/workflows/rspec.yml/badge.svg)
 
 # WhereChain
 
