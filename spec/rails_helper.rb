@@ -2,25 +2,16 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-# app_path = File.expand_path('dummy', __dir__)
-# $LOAD_PATH.unshift(app_path) unless $LOAD_PATH.include?(app_path)
-
-# require 'config/environment'
 require 'combustion'
 Combustion.initialize! :active_record
 
 require 'rspec/rails'
 require 'factory_bot'
-# require 'database_cleaner'
 require 'pry'
 
 puts "Testing Rails v#{Rails.version}"
 
-# Rails.backtrace_cleaner.remove_silencers!
-
-# Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
-
-# ActiveRecord::Migration.maintain_test_schema!
+Rails.backtrace_cleaner.remove_silencers!
 
 RSpec.configure do |config|
   require 'rspec/expectations'
@@ -34,17 +25,6 @@ RSpec.configure do |config|
   config.before(:suite) do
     FactoryBot.find_definitions
   end
-
-  # config.before(:suite) do
-  #   DatabaseCleaner.strategy = :transaction
-  #   DatabaseCleaner.clean_with(:truncation, except: %w[ar_internal_metadata schema_migrations])
-  # end
-
-  # config.around(:each) do |example|
-  #   DatabaseCleaner.cleaning do
-  #     example.run
-  #   end
-  # end
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
