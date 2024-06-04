@@ -99,10 +99,10 @@ $ bundle exec appraisal rspec
 Running tests for a specific version:
 
 ```bash
-$ bundle exec appraisal 5.0 rspec
+$ bundle exec appraisal 7.0 rspec
 ```
 
-You can see all the targets to use instead of `5.0` in the `Appraisals` file.
+You can see all the targets to use instead of `7.0` in the `Appraisals` file.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

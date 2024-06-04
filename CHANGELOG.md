@@ -1,3 +1,7 @@
+## 0.6.0
+
+- [x] Rails 7.1 support
+
 ## 0.5.0
 
 - [x] Rails 7 support
