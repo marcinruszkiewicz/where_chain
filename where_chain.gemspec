@@ -22,14 +22,14 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'activerecord', '>= 4.2'
+  s.add_runtime_dependency 'activerecord', '>= 4.2'
 
   s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'combustion', '~> 1.4'
   s.add_development_dependency 'factory_bot_rails'
   s.add_development_dependency 'pry-rails'
-  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'rspec_junit_formatter'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'sqlite3', '~> 1.4'
 end
